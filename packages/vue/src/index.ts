@@ -4,8 +4,8 @@ import type { JSClient } from "@appsignal/types"
 export function errorHandler(appsignal: JSClient, Vue?: VueConstructor<Vue>) {
   const version = Vue?.version ?? ""
 
-  return function (error: Error, vm: Vue, info: string) {
-    const { componentOptions } = vm.$vnode
+  return function (error: Error, vm: Vue | undefined, info: string) {
+    const componentOptions = vm?.$vnode.componentOptions
     const span = appsignal.createSpan()
 
     span
