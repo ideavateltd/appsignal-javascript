@@ -87,11 +87,11 @@ function windowEventsPlugin(options?: { [key: string]: any }) {
       }
     }
 
-    if (opts.onerror) {
+    if (opts.onerror && Object.getOwnPropertyDescriptor(ctx, 'onerror')?.set) {
       ctx.onerror = _onErrorHandler
     }
 
-    if (opts.onunhandledrejection) {
+    if (opts.onunhandledrejection && Object.getOwnPropertyDescriptor(ctx, 'onunhandledrejection')?.set) {
       ctx.onunhandledrejection = _onUnhandledRejectionHandler
     }
   }
