@@ -117,7 +117,11 @@ function networkBreadcrumbsPlugin(options?: Partial<PluginOptions>) {
             appsignal.addBreadcrumb({
               action: "Request failed",
               category: "Fetch",
-              metadata
+              metadata: {
+                ...metadata,
+                message: error.message,
+                name: error.name
+              }
             })
 
             throw error
